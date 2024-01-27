@@ -22,4 +22,9 @@ public class MonstreSoigneur extends Monstre {
     protected void setQuantiteSoin(int quantiteSoin){
         this.quantiteSoin = quantiteSoin;
     }
+
+    @Override
+    protected void mourir() {
+        // do smth
+    }
 }

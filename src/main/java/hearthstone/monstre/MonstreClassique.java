@@ -8,14 +8,25 @@ public class MonstreClassique extends Monstre {
     }
 
     public void attaquer(Monstre cible){
-        cible.prendreDegats(degats);
+        if (this.isBuffed())
+            cible.prendreDegats(getBuffedStat(degats));
+        else cible.prendreDegats(degats);
+
     }
 
     public int getDegats(){
-        return degats;
+        if (this.isBuffed())
+            return getBuffedStat(degats);
+        else
+            return degats;
     }
 
     protected void setDegats(int degats){
         this.degats = degats;
+    }
+
+    @Override
+    protected void mourir() {
+        // do smth
     }
 }

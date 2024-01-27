@@ -7,9 +7,11 @@ public class MonstreProtecteur extends Monstre {
     }
 
     public void proteger(Monstre cible){
-        setMonstreProtege(cible);
-        cible.setProtected(true);
-        cible.setProtecteur(this);
+        if (!cible.getClass().equals(MonstreProtecteur.class)) {
+            setMonstreProtege(cible);
+            cible.setProtected(true);
+            cible.setProtecteur(this);
+        } else System.out.println("Action interdite, on ne peut pas protéger un protecteur");
     }
 
     protected void setMonstreProtege(Monstre monstreProtege) {
@@ -20,5 +22,11 @@ public class MonstreProtecteur extends Monstre {
         return monstreProtege;
     }
 
+    @Override
+    protected void mourir(){
+        Monstre cible = this.getMonstreProtege();
+        cible.setProtected(false);
+        cible.setProtecteur(null);
+    }
 
 }
