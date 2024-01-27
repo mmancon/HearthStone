@@ -8,6 +8,7 @@ public abstract class Monstre {
     private MonstreProtecteur protecteur;
     private boolean isBuffed = false; // Lorsqu'un MonstreMascotte buff cette entité : cette variable passe à vraie
     private MonstreMascotte mascotte;
+    private int QuantiteBuff = 0; // Une valeur de buff modifiée par la Mascotte, cette valeur peut s'ajouter à une fonctionnalité quelconque
 
     public Monstre(int id, int pv, String nom) {
         this.id = id;
@@ -15,11 +16,7 @@ public abstract class Monstre {
         this.nom = nom;
     }
 
-    public void mourir() {
-        // do smth
-    }
-
-    public void prendreDegats(int degats) {
+    protected void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce monstre n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
             if (this.pv <= 0) {
@@ -28,6 +25,12 @@ public abstract class Monstre {
         } else {
             protecteur.prendreDegats(degats);
         }
+    }
+
+    protected abstract void mourir();
+
+    public int getBuffedStat(int stat){ // Permet de calculer la valeur d'une stat, si elle est buffée, sa valeur augmentera
+        return (int) Math.round(stat+stat*this.getQuantiteBuff()*0.01);
     }
 
     // Getters et Setters
@@ -76,9 +79,7 @@ public abstract class Monstre {
     }
 
     protected void setProtecteur(MonstreProtecteur protecteur) {
-        if (!this.getClass().equals(MonstreProtecteur.class)) {
-            this.protecteur = protecteur;
-        }else System.out.println("Action interdite, on ne peut pas protéger un protecteur");
+        this.protecteur = protecteur;
     }
 
     public MonstreMascotte getMascotte() {
@@ -87,5 +88,13 @@ public abstract class Monstre {
 
     protected void setMascotte(MonstreMascotte mascotte) {
         this.mascotte = mascotte;
+    }
+
+    public int getQuantiteBuff() {
+        return QuantiteBuff;
+    }
+
+    protected void setQuantiteBuff(int quantiteBuff) {
+        QuantiteBuff = quantiteBuff;
     }
 }
