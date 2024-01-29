@@ -1,0 +1,103 @@
+[
+    {
+        "nom": "Dragon",
+        "pv": "100",
+        "type": "classique",
+        "degats": "50",
+        "soins": "",
+        "pourfcentageBuff": ""
+    },
+    {
+        "nom": "Spartiate",
+        "pv": "70",
+        "type": "classique",
+        "degats": "65",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Valkyrie",
+        "pv": "30",
+        "type": "soigneur",
+        "degats": "",
+        "soins": "30",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Cerbère",
+        "pv": "150",
+        "type": "protecteur",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Prêtre",
+        "pv": "45",
+        "type": "mascotte",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": "50"
+    },
+    {
+        "nom": "Minotaure",
+        "pv": "130",
+        "type": "protecteur",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": " "
+    },
+    {
+        "nom": "Magicien",
+        "pv": "30",
+        "type": "mascotte",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": "60"
+    },
+    {
+        "nom": "Méduse",
+        "pv": "60",
+        "type": "soigneur",
+        "degats": "",
+        "soins": "15",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Centaure",
+        "pv": "80",
+        "type": "mascotte",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": "35"
+    },
+    {
+        "nom": "Géant",
+        "pv": "85",
+        "type": "classique",
+        "degats": "55",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Pégase",
+        "pv": "40",
+        "type": "soigneur",
+        "degats": "",
+        "soins": "20",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Griffon",
+        "pv": "50",
+        "type": "classique",
+        "degats": "70",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Sphinx",
+        "pv": "110",
+        "type": "protecteur"
+    }
+]

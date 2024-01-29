@@ -19,7 +19,7 @@ public abstract class Monstre {
         this.nom = nom;
     }
 
-    protected void prendreDegats(int degats) {
+    public void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce monstre n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
             printAndLog(getNom()+" a désormais "+getPv()+" PVs.", "info");
