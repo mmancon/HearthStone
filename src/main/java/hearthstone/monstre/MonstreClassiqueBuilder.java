@@ -5,6 +5,7 @@ public class MonstreClassiqueBuilder implements MonstreBuilder {
 
     @Override
     public Monstre build() {
+        logger.info("Création d'un Monstre Mascotte :\n - id : "+monstre.getId()+"\n - Nom : "+monstre.getNom()+"\n - Quantité de PVs :"+monstre.getPv()+"\n - Quantité de Dégâts : "+monstre.getDegats());
         return monstre;
     }
 
