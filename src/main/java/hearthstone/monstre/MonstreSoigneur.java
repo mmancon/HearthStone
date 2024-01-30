@@ -1,5 +1,7 @@
 package hearthstone.monstre;
 
+import hearthstone.champion.Champion;
+
 public class MonstreSoigneur extends Monstre {
     private int quantiteSoin;
     public MonstreSoigneur(int id, int pv, String nom, int quantiteSoin) {
@@ -7,18 +9,60 @@ public class MonstreSoigneur extends Monstre {
         this.quantiteSoin = quantiteSoin;
     }
 
-    public void soigner(Monstre cible){
-        if(cible.getPv() > 0) {
+    public void soigner(Monstre cible) {
+        if (cible.getPv() > 0 && cible.getPvMax() > cible.getPv()) {
+            int soinFinal;
+            // On vérifie qu'on ne rend pas à la cible plus de ses PVs
+            if (!this.isBuffed())
+                soinFinal = getBuffedStat(quantiteSoin) + cible.getPv();
+            else
+                soinFinal = quantiteSoin+cible.getPv();
+
+            if (soinFinal > cible.getPvMax())
+                soinFinal = cible.getPvMax()-soinFinal;
+            else soinFinal = quantiteSoin;
+
             if (this.isBuffed()) {
-                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + quantiteSoin + " ! Pour un total de : " + getBuffedStat(quantiteSoin), "info");
-                cible.prendreDegats(-getBuffedStat(quantiteSoin));
+                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + soinFinal + " ! Pour un total de : " + getBuffedStat(soinFinal), "info");
+                cible.prendreDegats(-soinFinal);
             } else {
-                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + quantiteSoin + " PVs", "info");
-                cible.prendreDegats(-quantiteSoin);
+                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + soinFinal + " PVs", "info");
+                cible.prendreDegats(-soinFinal);
             }
+        } else {
+            if (cible.getPv() < 0)
+                printAndLog("Action Interdite : Impossible de soigner un compagnon mort.", "warning");
+            if (cible.getPv() == cible.getPvMax())
+                printAndLog("Impossible de soigner un allié dont la vie est pleine ("+cible.getNom()+" a "+cible.getPv()+"/"+cible.getPvMax()+")", "info");
         }
-        else
-            printAndLog("Action Interdite : Impossible de soigner un compagnon mort.","warning");
+    }
+
+    public void soigner(Champion cible) {
+        if (cible.getPv() > 0 && cible.getPvMax() > cible.getPv()) {
+            int soinFinal;
+            // On vérifie qu'on ne rend pas à la cible plus de ses PVs
+            if (!this.isBuffed())
+                soinFinal = getBuffedStat(quantiteSoin) + cible.getPv();
+            else
+                soinFinal = quantiteSoin+cible.getPv();
+
+            if (soinFinal > cible.getPvMax())
+                soinFinal = cible.getPvMax()-soinFinal;
+            else soinFinal = quantiteSoin;
+
+            if (this.isBuffed()) {
+                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + soinFinal + " ! Pour un total de : " + getBuffedStat(soinFinal), "info");
+                cible.prendreDegats(-soinFinal);
+            } else {
+                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + soinFinal + " PVs", "info");
+                cible.prendreDegats(-soinFinal);
+            }
+        } else {
+            if (cible.getPv() < 0)
+                printAndLog("Action Interdite : Impossible de soigner un compagnon mort.", "warning");
+            if (cible.getPv() == cible.getPvMax())
+                printAndLog("Impossible de soigner un allié dont la vie est pleine ("+cible.getNom()+" a "+cible.getPv()+"/"+cible.getPvMax()+")", "info");
+        }
     }
 
     public int getQuantiteSoin(){
@@ -31,6 +75,9 @@ public class MonstreSoigneur extends Monstre {
 
     @Override
     protected void mourir() {
-        // do smth
+        if (this.isBuffed()) { // Si le monstre était buffé, on précise au buffer qu'il ne buffe plus
+            this.getMascotte().setBuffing(false);
+            this.getMascotte().setMonstreBuffed(null);
+        }
     }
 }

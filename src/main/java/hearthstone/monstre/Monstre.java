@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 public abstract class Monstre {
     Logger logger = Logger.getLogger("hearthstone.game");
     private int pv;
+    private final int pvMax;
     private String nom;
     private int id;
     private boolean isProtected = false; // Lorsqu'un MonstreProtecteur protège cette entité : cette variable passe à vraie
@@ -16,13 +17,14 @@ public abstract class Monstre {
     public Monstre(int id, int pv, String nom) {
         this.id = id;
         this.pv = pv;
+        this.pvMax = pv;
         this.nom = nom;
     }
 
     public void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce monstre n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
-            printAndLog(getNom()+" a désormais "+getPv()+" PVs.", "info");
+            printAndLog(getNom()+" a désormais "+this.getPv()+"/"+this.getPvMax()+" PVs.", "info");
             if (this.pv <= 0) {
                 printAndLog(getNom()+" est mort !", "info");
                 this.mourir();
@@ -39,7 +41,7 @@ public abstract class Monstre {
     }
 
     public void printAndLog(String message, String level) {
-        System.out.println(message);
+        // System.out.println(message); On laisse cette ligne commentée pour le debug
         if (level.equals("info"))
             logger.info(message);
         else if (level.equals("warning"))
@@ -109,5 +111,9 @@ public abstract class Monstre {
 
     protected void setQuantiteBuff(int quantiteBuff) {
         QuantiteBuff = quantiteBuff;
+    }
+
+    public int getPvMax() {
+        return pvMax;
     }
 }
