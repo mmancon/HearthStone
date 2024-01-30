@@ -45,8 +45,9 @@ public abstract class Champion {
             this.pv -= degats;
             printAndLog(getNom() + " a désormais " + getPv() + " PVs.", "info");
             if (this.pv <= 0) {
+                this.pv = 0;
                 this.mourir();
-                printAndLog(getNom() + " est mort !", "info");
+                printAndLog(getNom() + " est mort"+" avec "+getPv()+" PV !", "info");
             }
         } else {
             protecteur.prendreDegats(degats);

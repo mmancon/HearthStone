@@ -18,8 +18,13 @@ public class ChampionSniper extends Champion {
 
     @Override
     public void utiliserCapacite(Champion cible) {
+        if (!capaciteUtilisee) {
+            capaciteUtilisee = true;
         printAndLog(this.getNom() + " attaque "+cible.getNom()+" et lui inflige " + this.degats + " de dégâts.","info");
         cible.attaquetEtIgnorerProtecteur(this, cible);
+        } else {
+            printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
+        }
     }
 
     @Override
