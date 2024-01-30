@@ -1,6 +1,9 @@
 package hearthstone.monstre;
 
+import java.util.logging.Logger;
+
 public abstract class Monstre {
+    Logger logger = Logger.getLogger("hearthstone.game");
     private int pv;
     private String nom;
     private int id;
@@ -19,7 +22,9 @@ public abstract class Monstre {
     public void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce monstre n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
+            printAndLog(getNom()+" a désormais "+getPv()+" PVs.", "info");
             if (this.pv <= 0) {
+                printAndLog(getNom()+" est mort !", "info");
                 this.mourir();
             }
         } else {
@@ -31,6 +36,14 @@ public abstract class Monstre {
 
     public int getBuffedStat(int stat){ // Permet de calculer la valeur d'une stat, si elle est buffée, sa valeur augmentera
         return (int) Math.round(stat+stat*this.getQuantiteBuff()*0.01);
+    }
+
+    public void printAndLog(String message, String level) {
+        System.out.println(message);
+        if (level.equals("info"))
+            logger.info(message);
+        else if (level.equals("warning"))
+            logger.warning(message);
     }
 
     // Getters et Setters

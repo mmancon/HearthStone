@@ -8,18 +8,21 @@ public class MonstreClassique extends Monstre {
     }
 
     public void attaquer(Monstre cible){
-        if (this.isBuffed())
-            cible.prendreDegats(getBuffedStat(degats));
-        else cible.prendreDegats(degats);
+        if (this.isBuffed()) {
+            printAndLog(getNom()+" attaque "+cible.getNom()+" et lui inflige "+(100+getQuantiteBuff())+"% de "+getDegats()+" ! Pour un total de : "+getBuffedStat(degats), "info");
+            cible.prendreDegats(this.getBuffedStat(degats));
+        }
+        else {
+            printAndLog(getNom()+" attaque "+cible.getNom()+" et lui inflige "+getDegats(), "info");
+            cible.prendreDegats(degats);
+        }
 
     }
 
     public int getDegats(){
-        if (this.isBuffed())
-            return getBuffedStat(degats);
-        else
             return degats;
     }
+
 
     protected void setDegats(int degats){
         this.degats = degats;

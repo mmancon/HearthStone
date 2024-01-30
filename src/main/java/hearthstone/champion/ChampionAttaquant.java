@@ -4,8 +4,9 @@ import hearthstone.monstre.Monstre;
 public abstract class ChampionAttaquant extends Champion {
     private int degats;
 
-    public ChampionAttaquant() {
-        super(1,30,"Mage");
+    public ChampionAttaquant(int id, int pv, String nom, String cheminVersLeDeck,int degats) {
+        super(id, nom, cheminVersLeDeck);
+        this.degats = degats;
     }
 
 
@@ -13,20 +14,20 @@ public abstract class ChampionAttaquant extends Champion {
     public void utiliserCapacite(Monstre cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            System.out.println(getNom() + " utilise sa capacité pour attaquer !");
-            cible.prendreDegats(200);
+            printAndLog(getNom() + " utilise sa capacité pour infliger "+degats+ " à "+cible.getNom(), "info");
+            cible.prendreDegats(degats);
         } else {
-            System.out.println("Impossible, la capacité a déjà été utilisée ce tour-ci.");
+            printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
     }
     @Override
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            System.out.println(getNom() + " utilise sa capacité pour attaquer !");
-            cible.prendreDegats(200);
+            printAndLog(getNom() + " utilise sa capacité pour infliger "+degats+ " à "+cible.getNom(), "info");
+            cible.prendreDegats(degats);
         } else {
-            System.out.println("Impossible, la capacité a déjà été utilisée ce tour-ci.");
+            printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
     }
 

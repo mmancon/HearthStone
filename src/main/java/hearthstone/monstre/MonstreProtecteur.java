@@ -11,7 +11,8 @@ public class MonstreProtecteur extends Monstre {
             setMonstreProtege(cible);
             cible.setProtected(true);
             cible.setProtecteur(this);
-        } else System.out.println("Action interdite, on ne peut pas protéger un protecteur");
+            printAndLog(getNom()+" protège "+cible.getNom(),"info");
+        } else printAndLog("Action interdite, on ne peut pas protéger un protecteur", "warning");
     }
 
     protected void setMonstreProtege(Monstre monstreProtege) {
@@ -25,8 +26,8 @@ public class MonstreProtecteur extends Monstre {
     @Override
     protected void mourir(){
         Monstre cible = this.getMonstreProtege();
+        printAndLog(cible.getNom()+" n'est plus protégé.", "info");
         cible.setProtected(false);
         cible.setProtecteur(null);
     }
-
 }

@@ -5,6 +5,7 @@ public class MonstreSoigneurBuilder implements MonstreBuilder {
 
     @Override
     public Monstre build() {
+        logger.info("Création d'un Monstre Soigneur :\n - id : "+monstre.getId()+"\n - Nom : "+monstre.getNom()+"\n - Quantité de PVs : "+monstre.getPv()+"\n - Quantité de soins : "+monstre.getQuantiteSoin());
         return monstre;
     }
 

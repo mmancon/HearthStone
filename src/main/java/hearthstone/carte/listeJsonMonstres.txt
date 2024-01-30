@@ -1,0 +1,57 @@
+[
+    {
+        "nom": "Dragon",
+        "pv": "100",
+        "type": "classique",
+        "degats": "50",
+        "soins": "0",
+        "pourcentageBuff": "0"
+    },
+    {
+        "nom": "Spartiate",
+        "pv": "70",
+        "type": "classique",
+        "degats": "65",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Valkyrie",
+        "pv": "30",
+        "type": "soigneur",
+        "degats": "",
+        "soins": "30",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Cerbère",
+        "pv": "150",
+        "type": "protecteur",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Prêtre",
+        "pv": "45",
+        "type": "mascotte",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": "50"
+    },
+    {
+        "nom": "Minotaure",
+        "pv": "130",
+        "type": "protecteur",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+	"nom": "Lancier",
+	"pv": "60",
+	"degats": "75",
+	"soins": "",
+	"pourcentageBuff": ""
+    }
+]

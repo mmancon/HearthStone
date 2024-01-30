@@ -1,10 +1,11 @@
 package hearthstone.monstre;
 
 public class MonstreProtecteurBuilder implements MonstreBuilder {
-    private MonstreProtecteur monstre = new MonstreProtecteur(0, 300, "Monstre Builder");
+    private MonstreProtecteur monstre = new MonstreProtecteur(0, 300, "Monstre Protecteur");
 
     @Override
     public Monstre build() {
+        logger.info("Création d'un Monstre Protecteur :\n - id : "+monstre.getId()+"\n - Nom : "+monstre.getNom()+"\n - Quantité de PVs :"+monstre.getPv());
         return monstre;
     }
 
