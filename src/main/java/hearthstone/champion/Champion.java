@@ -16,8 +16,8 @@ import java.util.Arrays;
 
 public abstract class Champion {
     Logger logger = Logger.getLogger("hearthstone.game");
-    private int pv;
-    private final int pvMax;
+    private int pv = 300;
+    private final int pvMax = 300;
     private String nom;
     public boolean capaciteUtilisee; // Cette variable passe à vrai lorsqu'un champion utilise sa capacité lors d'un tour, il ne peut donc l'utiliser qu'une fois par tour
     private int id;
@@ -26,29 +26,22 @@ public abstract class Champion {
     private ArrayList<Monstre> equipe;
     private boolean isProtected = false; // Lorsqu'un MonstreProtecteur protège cette entité : cette variable passe à vraie
     private MonstreProtecteur protecteur;
-    private boolean isBuffed = false;
-    private MonstreMascotte mascotte;
+
 
     public Champion(int id, String nom, String cheminVersLeDeck) {
         this.id = id;
-        pv = 30; // Tous les joueurs ont le même nombre de PV, sinon c'est triché
-        pvMax = pv;
         this.nom = nom;
         main = genererDeck(cheminVersLeDeck);
         equipe = new ArrayList<>();
     }
 
-    public abstract void mourir();
-
     public void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce champion n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
-            printAndLog(getNom() + " a désormais " + getPv() + " PVs.", "info");
+            printAndLog(getNom()+" a désormais "+getPv()+"/"+getPvMax()+" PVs.", "info");
             if (this.pv <= 0) {
                 this.pv = 0;
-                this.mourir();
-                printAndLog(getNom() + " est mort"+" avec "+getPv()+" PV !", "info");
-            }
+                printAndLog(getNom() + " est mort"+" avec "+getPv()+" PV !", "info");            }
         } else {
             protecteur.prendreDegats(degats);
         }
@@ -91,7 +84,7 @@ public abstract class Champion {
     //Permet à la capacité du sniper de passer outre le protecteur
     protected void attaquetEtIgnorerProtecteur(ChampionSniper sniper, Champion cible){
         cible.setPv(cible.getPv()-sniper.getDegats());
-        printAndLog(getNom() + " a désormais " + getPv() + " PVs.", "info");
+        printAndLog(getNom()+" a désormais "+getPv()+"/"+getPvMax()+" PVs.", "info");
     }
 
     // Getters et Setters

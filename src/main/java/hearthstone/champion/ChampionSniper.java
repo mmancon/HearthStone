@@ -12,11 +12,6 @@ public class ChampionSniper extends Champion {
     }
 
     @Override
-    public void mourir() {
-
-    }
-
-    @Override
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true;

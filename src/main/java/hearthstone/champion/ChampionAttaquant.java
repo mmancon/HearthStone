@@ -38,13 +38,6 @@ public class ChampionAttaquant extends Champion {
         }
     }
 
-
-    @Override
-    public void mourir() {
-
-    }
-
-
     public int getDegats() {
         return degats;
     }
