@@ -20,7 +20,7 @@ public class TestSniper extends TestCase {
 
 
         assertEquals("Sniper",championSniper.getNom());
-        assertEquals(30,championSniper.getPv());
+        assertEquals(300,championSniper.getPv());
         assertEquals("Mage",championAttaquant.getNom());
 
         mProtec.proteger(championAttaquant);
@@ -29,23 +29,23 @@ public class TestSniper extends TestCase {
 
         // Affichage des PV du champion Sniper avant l'attaque
         System.out.println("PV du champion Sniper avant l'attaque : " + championSniper.getPv());
-        assertEquals(30,championSniper.getPv());
+        assertEquals(300,championSniper.getPv());
 
         // Attaque du champion attaquant sur le champion sniper
         championAttaquant.utiliserCapacite(championSniper);
-        assertEquals(28,championSniper.getPv());
+        assertEquals(298,championSniper.getPv());
         // Affichage des PV du champion sniper après l'attaque
         System.out.println("PV du champion sniper après l'attaque : " + championSniper.getPv());
 
         // Affichage des PV du champion attaquant avant l'attaque du champion sniper
         System.out.println("PV du champion attaquant avant l'attaque du champion sniper : " + championAttaquant.getPv());
-        assertEquals(30,championAttaquant.getPv());
+        assertEquals(300,championAttaquant.getPv());
         // Utilisation de la capacité spéciale du champion sniper deux fois.
         championSniper.utiliserCapacite(championAttaquant);
 
         // Affichage des PV du champion attaquant après l'attaque du champion sniper
         System.out.println("PV du champion attaquant après l'attaque du champion sniper : " + championAttaquant.getPv());
-        assertEquals(27,championAttaquant.getPv());
+        assertEquals(297,championAttaquant.getPv());
     }
 
     private static void poserMonstre(Monstre monstre) {

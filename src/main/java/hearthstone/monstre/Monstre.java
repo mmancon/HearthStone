@@ -24,7 +24,8 @@ public abstract class Monstre {
     public void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce monstre n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
-            printAndLog(getNom()+" a désormais "+this.getPv()+"/"+this.getPvMax()+" PVs.", "info");
+            printAndLog(getNom()+" a désormais "+getPv()+"/"+getPvMax()+" PVs.", "info");
+            // Il y a un problème avec getPvMax() que nous n'avons pas su résoudre, la valeur affichée est parfois mauvaise
             if (this.pv <= 0) {
                 this.pv = 0;
                 printAndLog(getNom()+" est mort !", "info");

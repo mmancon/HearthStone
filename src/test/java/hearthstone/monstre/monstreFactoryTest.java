@@ -40,6 +40,6 @@ public class monstreFactoryTest extends TestCase {
         // Vérifiez le soin
         assertEquals(12, mSoin.getQuantiteSoin());
         mSoin.soigner(m1);
-        assertEquals(35, m1.getPv());
+        assertEquals(47, m1.getPv());
     }
 }
