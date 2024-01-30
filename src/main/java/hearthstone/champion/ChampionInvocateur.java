@@ -30,10 +30,8 @@ public class ChampionInvocateur extends Champion {
     @Override
     public void utiliserCapacite() {
         // Ici, nous invoquons un MonstreClassique en utilisant MonstreFactory
-        MonstreClassique monstreInvoque = monstreFactory.buildClassique(5,100,"m1",50);
+        MonstreClassique monstreInvoque = monstreFactory.buildClassique(getMain().size(),100,"Monstre invoqué",50);
         printAndLog(this.getNom() + " utilise sa capacité pour invoquer : " + monstreInvoque.getNom(),"info");
-
-        // Ajoutez ici la logique pour ajouter le monstre au jeu, comme le placer sur le plateau.
     }
 
     // Getters et Setters
@@ -41,7 +39,7 @@ public class ChampionInvocateur extends Champion {
         return monstreFactory;
     }
 
-    public void setMonstreFactory(MonstreFactory monstreFactory) {
+    protected void setMonstreFactory(MonstreFactory monstreFactory) {
         this.monstreFactory = monstreFactory;
     }
 }

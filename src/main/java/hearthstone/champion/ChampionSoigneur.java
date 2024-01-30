@@ -2,9 +2,9 @@ package hearthstone.champion;
 
 import hearthstone.monstre.Monstre;
 public abstract class ChampionSoigneur extends Champion {
-    private int soins;
+    private final int soins;
 
-    public ChampionSoigneur(int id, String nom, String cheminVersLeDeck,int soins) {
+    public ChampionSoigneur(int id, String nom, String cheminVersLeDeck, int soins) {
         super(id, nom, cheminVersLeDeck);
         this.soins = soins;
     }
@@ -34,7 +34,4 @@ public abstract class ChampionSoigneur extends Champion {
         return soins;
     }
 
-    public void setSoins(int soins) {
-        this.soins = soins;
-    }
 }

@@ -1,13 +1,13 @@
 package hearthstone.champion;
 
 import hearthstone.monstre.Monstre;
-import hearthstone.monstre.MonstreFactory;
 
 public class ChampionSniper extends Champion {
     private int degats;
 
-    public ChampionSniper(int id, String nom, String cheminVersLeDeck) {
+    public ChampionSniper(int id, String nom, int degats, String cheminVersLeDeck) {
             super(id, nom, cheminVersLeDeck);
+            this.degats = degats;
     }
 
     @Override
