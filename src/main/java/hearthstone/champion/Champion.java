@@ -31,7 +31,7 @@ public abstract class Champion {
     public Champion(int id, String nom, String cheminVersLeDeck) {
         this.id = id;
         this.nom = nom;
-        main = genererDeck(cheminVersLeDeck);
+        main = genererDeck(cheminVersLeDeck); // On gén_re une main au joueur à partir de Cartes JSON
         equipe = new ArrayList<>();
     }
 
@@ -87,6 +87,11 @@ public abstract class Champion {
         printAndLog(getNom()+" a désormais "+getPv()+"/"+getPvMax()+" PVs.", "info");
     }
 
+    // Methodes qui permettent aux champions d'utiliser leurs capacités sur un champion adverse ou un monstre
+    public abstract void utiliserCapacite(Champion cible);
+
+    public abstract void utiliserCapacite(Monstre cible);
+
     // Getters et Setters
     public String getNom() {
         return nom;
@@ -115,9 +120,6 @@ public abstract class Champion {
     protected void setCapaciteUtilisee(boolean capaciteUtilisee) {
         this.capaciteUtilisee = capaciteUtilisee;
     }
-    public abstract void utiliserCapacite(Champion cible);
-    // Methodes qui permettent aux champions d'utiliser leurs capacités sur un champion adverse ou un monstre
-    public abstract void utiliserCapacite(Monstre cible);
 
     protected void setId(int id) {
         this.id = id;
