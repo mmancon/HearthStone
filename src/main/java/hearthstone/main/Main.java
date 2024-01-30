@@ -134,6 +134,10 @@ public class Main {
                 nextPlayer = 0;
             }
         }
+
+        if (champ1.getPv() == 0)
+            logger.info(champ2.getNom()+" gagne la partie !");
+        else logger.info(champ1.getNom()+" gagne la partie !");
     }
 
     // Ensemble de méthodes permettant de générer des sélections aléatoires selon des critères
