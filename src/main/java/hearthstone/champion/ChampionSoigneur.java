@@ -1,7 +1,7 @@
 package hearthstone.champion;
 
 import hearthstone.monstre.Monstre;
-public abstract class ChampionSoigneur extends Champion {
+public class ChampionSoigneur extends Champion {
     private final int soins;
 
     public ChampionSoigneur(int id, String nom, String cheminVersLeDeck, int soins) {
@@ -19,6 +19,17 @@ public abstract class ChampionSoigneur extends Champion {
             printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
     }
+
+    @Override
+    public void utiliserCapacite() {
+
+    }
+
+    @Override
+    public void mourir() {
+
+    }
+
     @Override
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {

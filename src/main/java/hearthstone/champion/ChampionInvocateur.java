@@ -32,6 +32,7 @@ public class ChampionInvocateur extends Champion {
         // Ici, nous invoquons un MonstreClassique en utilisant MonstreFactory
         MonstreClassique monstreInvoque = monstreFactory.buildClassique(getMain().size(),100,"Monstre invoqué",50);
         printAndLog(this.getNom() + " utilise sa capacité pour invoquer : " + monstreInvoque.getNom(),"info");
+
     }
 
     // Getters et Setters

@@ -65,8 +65,10 @@ public abstract class Champion {
     }
 
     public void jouerCarte(Carte carteUtilisee, int id) {
+        main.remove(carteUtilisee);
         terrain.add(carteUtilisee.invoquerMonstre(id));
     }
+
 
     protected ArrayList<Carte> genererDeck(String cheminVersLeJson) {
         ArrayList<Carte> deck = new ArrayList<>();
