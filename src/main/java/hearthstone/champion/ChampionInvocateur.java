@@ -4,19 +4,34 @@ import hearthstone.monstre.Monstre;
 import hearthstone.monstre.MonstreClassique;
 import hearthstone.monstre.MonstreFactory;
 
-public abstract class ChampionInvocateur extends Champion {
+public class ChampionInvocateur extends Champion {
     private MonstreFactory monstreFactory;
 
-    public ChampionInvocateur(int id, int pv, String nom, MonstreFactory monstreFactory) {
-        super(id, pv, nom);
+    public ChampionInvocateur(int id, String nom, String cheminVersLeDeck, MonstreFactory monstreFactory) {
+        super(id, nom, cheminVersLeDeck);
         this.monstreFactory = monstreFactory;
     }
 
     @Override
-    public void utiliserCapacite(Monstre monstre) {
+    public void mourir() {
+
+    }
+
+    @Override
+    public void utiliserCapacite(Champion cible) {
+
+    }
+
+    @Override
+    public void utiliserCapacite(Monstre cible) {
+
+    }
+
+    @Override
+    public void utiliserCapacite() {
         // Ici, nous invoquons un MonstreClassique en utilisant MonstreFactory
         MonstreClassique monstreInvoque = monstreFactory.buildClassique(5,100,"m1",50);
-        System.out.println(this.getNom() + " utilise sa capacité pour invoquer : " + monstreInvoque.getNom());
+        printAndLog(this.getNom() + " utilise sa capacité pour invoquer : " + monstreInvoque.getNom(),"info");
 
         // Ajoutez ici la logique pour ajouter le monstre au jeu, comme le placer sur le plateau.
     }

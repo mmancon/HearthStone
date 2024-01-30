@@ -1,17 +1,19 @@
 package hearthstone.champion;
 
+import hearthstone.monstre.MonstreFactory;
+
 public abstract class ChampionSniper extends Champion {
     private int degats;
 
-    public ChampionSniper() {
-        super(1,30,"Mage");
+    public ChampionSniper(int id, String nom, String cheminVersLeDeck) {
+            super(id, nom, cheminVersLeDeck);
     }
 
     @Override
     public void utiliserCapacite() {
         getListener().attaquerAdversaire(2);
         // Logique pour attaquer un champion
-        System.out.println(this.getNom() + " attaque avec " + this.degats + " de dégâts.");
+        printAndLog(this.getNom() + " attaque avec " + this.degats + " de dégâts.","info");
     }
 
     public int getDegats() {

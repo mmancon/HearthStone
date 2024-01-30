@@ -1,22 +1,37 @@
 package hearthstone.carte;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import hearthstone.monstre.Monstre;
 import hearthstone.monstre.MonstreFactory;
 
 import java.util.logging.Logger;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Carte {
     Logger logger = Logger.getLogger("hearthstone.game");
+    @JsonProperty("nom")
     private final String nom;
+    @JsonProperty("pv")
     private final int pv;
+    @JsonProperty("type")
     private final String type; // indique le type de carte : Protecteur / Classique / Soigneur ..
+    @JsonProperty("degats")
     private final int degats;
+    @JsonProperty("soins")
     private final int soins;
+    @JsonProperty("pourcentageBuff")
     private final int pourcentageBuff;
 
     private final MonstreFactory factoryCartes = new MonstreFactory(); // Les cartes utilisent la factory pour générer des monstres
 
-    public Carte( String nom, int pv, String type, int degats, int soins, int pourcentageBuff) {
+    @JsonCreator
+    public Carte(@JsonProperty("nom") String nom,
+                 @JsonProperty("pv") int pv,
+                 @JsonProperty("type") String type,
+                 @JsonProperty("degats") int degats,
+                 @JsonProperty("soins") int soins,
+                 @JsonProperty("pourcentageBuff") int pourcentageBuff) {
         this.nom = nom;
         this.pv = pv;
         this.type = type;
@@ -40,6 +55,7 @@ public class Carte {
         }
     }
 
+    // Getters et setters
     public String getNom() {
         return nom;
     }

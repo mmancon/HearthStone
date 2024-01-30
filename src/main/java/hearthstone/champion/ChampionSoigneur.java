@@ -2,40 +2,39 @@ package hearthstone.champion;
 
 import hearthstone.monstre.Monstre;
 public abstract class ChampionSoigneur extends Champion {
-    private int degats;
+    private int soins;
 
-    public ChampionSoigneur(int id, int pv, String nom, int degats) {
-        super(id, pv, nom);
-        this.degats = degats;
+    public ChampionSoigneur(int id, String nom, String cheminVersLeDeck,int soins) {
+        super(id, nom, cheminVersLeDeck);
+        this.soins = soins;
     }
 
     @Override
     public void utiliserCapacite(Monstre cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            System.out.println(getNom() + " utilise sa capacité pour attaquer !");
-            cible.prendreDegats(-200);
+            printAndLog(getNom() + " utilise sa capacité pour soigner "+soins+" à"+cible.getNom(),"info");
+            cible.prendreDegats(-soins);
         } else {
-            System.out.println("Impossible, la capacité a déjà été utilisée ce tour-ci.");
+            printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
     }
     @Override
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            System.out.println(getNom() + " utilise sa capacité pour attaquer !");
+            printAndLog(getNom() + " utilise sa capacité pour soigner "+cible.getNom(),"info");
             cible.prendreDegats(-200);
         } else {
-            System.out.println("Impossible, la capacité a déjà été utilisée ce tour-ci.");
+            printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
     }
 
-
-    public int getDegats() {
-        return degats;
+    public int getSoins() {
+        return soins;
     }
 
-    public void setDegats(int degats) {
-        this.degats = degats;
+    public void setSoins(int soins) {
+        this.soins = soins;
     }
 }
