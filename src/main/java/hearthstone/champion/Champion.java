@@ -22,7 +22,6 @@ public abstract class Champion {
     public boolean capaciteUtilisee;
     private int id;
     private String capacite;
-    private ChampionListener listener;
     private ArrayList<Carte> main;
     private ArrayList<Monstre> terrain;
     private boolean isProtected = false; // Lorsqu'un MonstreProtecteur protège cette entité : cette variable passe à vraie
@@ -135,14 +134,6 @@ public abstract class Champion {
 
     public boolean isProtected() {
         return isProtected;
-    }
-
-    public ChampionListener getListener() {
-        return listener;
-    }
-
-    protected void setListener(ChampionListener listener) {
-        this.listener = listener;
     }
 
     protected void setProtected(boolean aProtected) {
