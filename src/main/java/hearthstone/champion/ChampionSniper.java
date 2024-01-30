@@ -8,6 +8,7 @@ public class ChampionSniper extends Champion {
     public ChampionSniper(int id, String nom, int degats, String cheminVersLeDeck) {
             super(id, nom, cheminVersLeDeck);
             this.degats = degats;
+        printAndLog("Création d'un Champion de type Sniper du nom de "+this.getNom()+" et ayant "+this.getPv()+" PVs", "info");
     }
 
     @Override
@@ -17,7 +18,8 @@ public class ChampionSniper extends Champion {
 
     @Override
     public void utiliserCapacite(Champion cible) {
-
+        printAndLog(this.getNom() + " attaque "+cible.getNom()+" et lui inflige " + this.degats + " de dégâts.","info");
+        cible.attaquetEtIgnorerProtecteur(this, cible);
     }
 
     @Override
@@ -27,9 +29,7 @@ public class ChampionSniper extends Champion {
 
     @Override
     public void utiliserCapacite() {
-        getListener().attaquerAdversaire(2);
-        // Logique pour attaquer un champion
-        printAndLog(this.getNom() + " attaque avec " + this.degats + " de dégâts.","info");
+
     }
 
 
