@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Carte {
     Logger logger = Logger.getLogger("hearthstone.game");
-    @JsonProperty("nom")
+    @JsonProperty("nom") // On utilise  la balise JsonProperty pour préciser à l'outil de gestion de Json que la key "nom" deviendra nom lors de la construction d'une Carte
     private final String nom;
     @JsonProperty("pv")
     private final int pv;

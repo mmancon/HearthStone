@@ -81,6 +81,7 @@ public abstract class Champion {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        printAndLog("Récupération du deck de "+deck.toArray().length+" cartes pour le joueur "+getNom(), "info");
         return deck;
     }
 

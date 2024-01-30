@@ -1,5 +1,6 @@
 package hearthstone.main;
 import hearthstone.champion.ChampionInvocateur;
+import hearthstone.champion.ChampionSniper;
 import hearthstone.monstre.*;
 
 import java.io.IOException;
@@ -26,13 +27,18 @@ public class Main
         logger.info("Execution du Main");
 
         String pathToDeck1 = System.getProperty("user.dir")+"\\src\\main\\java\\hearthstone\\carte\\listeJsonMonstres.txt";
+        String pathToDeck2 = System.getProperty("user.dir")+"\\src\\main\\java\\hearthstone\\carte\\listeJsonMonstresJ2.txt";
 
         ChampionInvocateur champ1 = new ChampionInvocateur(0, "Michel", pathToDeck1,new MonstreFactory());
-        System.out.println(champ1.getMain().get(12));
-        champ1.playMinion(champ1.getMain().get(12), 1);
+        System.out.println(champ1.getMain().get(2));
+        champ1.playMinion(champ1.getMain().get(2), champ1.getTerrain().toArray().length);
         System.out.println(champ1.getTerrain().get(0).getNom());
+        System.out.println(champ1.getMain().toArray().length);
 
-//        ArrayList<Carte> deck1 = new ArrayList<>();
+        ChampionSniper champ2 = new ChampionSniper(1, "Léon", pathToDeck2);
+        System.out.println(champ2.getMain().toArray().length);
+
+        //        ArrayList<Carte> deck1 = new ArrayList<>();
 //        deck1.add(new Carte("Dragon", 100, "classique", 50, 0, 0));
 //        deck1.add(new Carte("Spartiate", 70, "classique", 65, 0, 0));
 //        deck1.add(new Carte("Valkyrie", 30, "soigneur", 0, 30, 0));

@@ -1,0 +1,55 @@
+[
+    {
+        "nom": "Magicien",
+        "pv": "30",
+        "type": "mascotte",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": "60"
+    },
+    {
+        "nom": "Méduse",
+        "pv": "60",
+        "type": "soigneur",
+        "degats": "",
+        "soins": "15",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Centaure",
+        "pv": "80",
+        "type": "mascotte",
+        "degats": "",
+        "soins": "",
+        "pourcentageBuff": "35"
+    },
+    {
+        "nom": "Géant",
+        "pv": "85",
+        "type": "classique",
+        "degats": "55",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Pégase",
+        "pv": "40",
+        "type": "soigneur",
+        "degats": "",
+        "soins": "20",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Griffon",
+        "pv": "50",
+        "type": "classique",
+        "degats": "70",
+        "soins": "",
+        "pourcentageBuff": ""
+    },
+    {
+        "nom": "Sphinx",
+        "pv": "110",
+        "type": "protecteur"
+    }
+]
