@@ -3,7 +3,7 @@ import junit.framework.TestCase;
 
 public class TestAttaqueMonstre extends TestCase {
     /**
-     * Vérife que la factory fonctionne
+     * TU du sujet : Vérifie qu'un monstre tue un autre monstre
      * &#064;Test
      */
     public void testMonstreFactory() {
