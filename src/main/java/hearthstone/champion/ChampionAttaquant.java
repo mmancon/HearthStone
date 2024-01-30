@@ -1,7 +1,7 @@
 package hearthstone.champion;
 
 import hearthstone.monstre.Monstre;
-public abstract class ChampionAttaquant extends Champion {
+public class ChampionAttaquant extends Champion {
     private int degats;
 
     public ChampionAttaquant(int id, String nom, String cheminVersLeDeck,int degats) {
