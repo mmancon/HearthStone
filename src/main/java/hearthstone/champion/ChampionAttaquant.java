@@ -9,6 +9,7 @@ public abstract class ChampionAttaquant extends Champion {
         this.degats = degats;
     }
 
+
     @Override
     public void utiliserCapacite(Monstre cible) {
         if (!capaciteUtilisee) {

@@ -22,7 +22,7 @@ public class ChampionSniper extends Champion {
 
     @Override
     public void utiliserCapacite(Monstre cible) {
-
+      
     }
 
     @Override
@@ -31,6 +31,7 @@ public class ChampionSniper extends Champion {
         // Logique pour attaquer un champion
         printAndLog(this.getNom() + " attaque avec " + this.degats + " de dégâts.","info");
     }
+
 
     public int getDegats() {
         return degats;
