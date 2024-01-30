@@ -13,27 +13,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 
 public abstract class Champion {
     Logger logger = Logger.getLogger("hearthstone.game");
     private int pv;
+    private final int pvMax;
     private String nom;
     public boolean capaciteUtilisee; // Cette variable passe à vrai lorsqu'un champion utilise sa capacité lors d'un tour, il ne peut donc l'utiliser qu'une fois par tour
     private int id;
     private String capacite;
     private ArrayList<Carte> main;
-    private ArrayList<Monstre> terrain;
+    private ArrayList<Monstre> equipe;
     private boolean isProtected = false; // Lorsqu'un MonstreProtecteur protège cette entité : cette variable passe à vraie
     private MonstreProtecteur protecteur;
+    private boolean isBuffed = false;
     private MonstreMascotte mascotte;
 
     public Champion(int id, String nom, String cheminVersLeDeck) {
         this.id = id;
         pv = 30; // Tous les joueurs ont le même nombre de PV, sinon c'est triché
+        pvMax = pv;
         this.nom = nom;
         main = genererDeck(cheminVersLeDeck);
-        terrain = new ArrayList<>();
+        equipe = new ArrayList<>();
     }
 
     public abstract void mourir();
@@ -52,7 +54,7 @@ public abstract class Champion {
     }
 
     public void printAndLog(String message, String level) {
-        System.out.println(message);
+        // System.out.println(message); On laisse cette ligne commentée pour le debug
         if (level.equals("info"))
             logger.info(message);
         else if (level.equals("warning"))
@@ -60,14 +62,13 @@ public abstract class Champion {
     }
 
     public void MortMonstre(Monstre m) {
-        getTerrain().remove(m);
+        getEquipe().remove(m);
     }
 
     public void jouerCarte(Carte carteUtilisee, int id) {
         main.remove(carteUtilisee);
-        terrain.add(carteUtilisee.invoquerMonstre(id));
+        equipe.add(carteUtilisee.invoquerMonstre(id));
     }
-
 
     protected ArrayList<Carte> genererDeck(String cheminVersLeJson) {
         ArrayList<Carte> deck = new ArrayList<>();
@@ -89,6 +90,7 @@ public abstract class Champion {
     //Permet à la capacité du sniper de passer outre le protecteur
     protected void attaquetEtIgnorerProtecteur(ChampionSniper sniper, Champion cible){
         cible.setPv(cible.getPv()-sniper.getDegats());
+        printAndLog(getNom() + " a désormais " + getPv() + " PVs.", "info");
     }
 
     // Getters et Setters
@@ -108,8 +110,8 @@ public abstract class Champion {
         return capaciteUtilisee;
     }
 
-    public ArrayList<Monstre> getTerrain() {
-        return terrain;
+    public ArrayList<Monstre> getEquipe() {
+        return equipe;
     }
 
     public ArrayList<Carte> getMain(){
@@ -139,9 +141,16 @@ public abstract class Champion {
         return isProtected;
     }
 
-    protected void setProtected(boolean aProtected) {
+    public void setProtected(boolean aProtected) {
         isProtected = aProtected;
     }
 
+    public void setProtecteur(MonstreProtecteur monstre){
+        this.protecteur = monstre;
+    }
     public abstract void utiliserCapacite();
+
+    public int getPvMax() {
+        return pvMax;
+    }
 }

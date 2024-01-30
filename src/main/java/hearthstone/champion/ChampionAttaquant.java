@@ -7,6 +7,7 @@ public class ChampionAttaquant extends Champion {
     public ChampionAttaquant(int id, String nom, String cheminVersLeDeck,int degats) {
         super(id, nom, cheminVersLeDeck);
         this.degats = degats;
+        printAndLog("Création d'un Champion de type Attaquant du nom de "+this.getNom()+" et ayant "+this.getPv()+" PVs", "info");
     }
 
 
@@ -27,19 +28,20 @@ public class ChampionAttaquant extends Champion {
     }
 
     @Override
-    public void mourir() {
-
-    }
-
-    @Override
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            cible.prendreDegats(degats);
             printAndLog(getNom() + " utilise sa capacité pour infliger "+degats+ " à "+cible.getNom(), "info");
+            cible.prendreDegats(degats);
         } else {
             printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
+    }
+
+
+    @Override
+    public void mourir() {
+
     }
 
 

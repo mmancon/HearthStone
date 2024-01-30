@@ -1,5 +1,7 @@
 package hearthstone.monstre;
 
+import hearthstone.champion.Champion;
+
 public class MonstreClassique extends Monstre {
     private int degats;
     public MonstreClassique(int id, int pv, String nom, int degats) {
@@ -8,6 +10,18 @@ public class MonstreClassique extends Monstre {
     }
 
     public void attaquer(Monstre cible){
+        if (this.isBuffed()) {
+            printAndLog(getNom()+" attaque "+cible.getNom()+" et lui inflige "+(100+getQuantiteBuff())+"% de "+getDegats()+" ! Pour un total de : "+getBuffedStat(degats), "info");
+            cible.prendreDegats(this.getBuffedStat(degats));
+        }
+        else {
+            printAndLog(getNom()+" attaque "+cible.getNom()+" et lui inflige "+getDegats(), "info");
+            cible.prendreDegats(degats);
+        }
+
+    }
+
+    public void attaquer(Champion cible){
         if (this.isBuffed()) {
             printAndLog(getNom()+" attaque "+cible.getNom()+" et lui inflige "+(100+getQuantiteBuff())+"% de "+getDegats()+" ! Pour un total de : "+getBuffedStat(degats), "info");
             cible.prendreDegats(this.getBuffedStat(degats));
@@ -30,6 +44,9 @@ public class MonstreClassique extends Monstre {
 
     @Override
     protected void mourir() {
-        // do smth
+        if (this.isBuffed()) { // Si le monstre était buffé, on précise au buffer qu'il ne buffe plus
+            this.getMascotte().setBuffing(false);
+            this.getMascotte().setMonstreBuffed(null);
+        }
     }
 }

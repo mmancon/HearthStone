@@ -50,6 +50,7 @@
     {
 	"nom": "Lancier",
 	"pv": "60",
+	"type": "classique",
 	"degats": "75",
 	"soins": "",
 	"pourcentageBuff": ""

@@ -3,6 +3,7 @@ package hearthstone.monstre;
 public class MonstreMascotte extends Monstre {
     private Monstre monstreBuffed;
     private int pourcentageBuff;
+    private boolean isBuffing = false;
 
     public MonstreMascotte(int id, int pv, String nom, int pourcentageBuff) {
         super(id, pv, nom);
@@ -14,6 +15,7 @@ public class MonstreMascotte extends Monstre {
         // ex : un Classique peut buffer ses dégâts, un soigneur les pvs qu'il rend etc.
         if (!cible.getClass().equals(MonstreMascotte.class)) {
             if (!cible.isBuffed()) {
+                setBuffing(true);
                 setMonstreBuffed(cible);
                 cible.setBuffed(true);
                 cible.setMascotte(this);
@@ -25,10 +27,12 @@ public class MonstreMascotte extends Monstre {
 
     @Override
     protected void mourir(){
-        Monstre cible = this.getMascotte();
-        printAndLog(cible.getNom()+" n'est plus buffé.", "info");
-        cible.setBuffed(false);
-        cible.setMascotte(null);
+        if (isBuffing) { // Si la mascotte buffait un monstre
+            Monstre cible = this.getMonstreBuffed();
+            printAndLog(cible.getNom() + " n'est plus buffé.", "info");
+            cible.setBuffed(false);
+            cible.setMascotte(null);
+        }
     }
 
     protected void setMonstreBuffed(Monstre monstreBuffed) {
@@ -47,4 +51,11 @@ public class MonstreMascotte extends Monstre {
         this.pourcentageBuff = pourcentageBuff;
     }
 
+    public boolean isBuffing() {
+        return isBuffing;
+    }
+
+    public void setBuffing(boolean buffing) {
+        isBuffing = buffing;
+    }
 }

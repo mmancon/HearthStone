@@ -10,6 +10,7 @@ public class ChampionInvocateur extends Champion {
     public ChampionInvocateur(int id, String nom, String cheminVersLeDeck, MonstreFactory monstreFactory) {
         super(id, nom, cheminVersLeDeck);
         this.monstreFactory = monstreFactory;
+        printAndLog("Création d'un Champion de type Invocateur du nom de "+this.getNom()+" et ayant "+this.getPv()+" PVs", "info");
     }
 
     @Override
