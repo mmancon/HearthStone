@@ -14,11 +14,6 @@ public class ChampionInvocateur extends Champion {
     }
 
     @Override
-    public void mourir() {
-
-    }
-
-    @Override
     public void utiliserCapacite(Champion cible) {
 
     }

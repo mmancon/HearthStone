@@ -11,46 +11,59 @@ public class MonstreSoigneur extends Monstre {
 
     public void soigner(Monstre cible) {
         if (cible.getPv() > 0 && cible.getPvMax() > cible.getPv()) {
-            int differencePvMaxPv = cible.getPvMax() - cible.getPv();
+            int soinFinal;
+            // On vérifie qu'on ne rend pas à la cible plus de ses PVs
+            if (!this.isBuffed())
+                soinFinal = getBuffedStat(quantiteSoin) + cible.getPv();
+            else
+                soinFinal = quantiteSoin+cible.getPv();
+
+            if (soinFinal > cible.getPvMax())
+                soinFinal = cible.getPvMax()-soinFinal;
+            else soinFinal = quantiteSoin;
 
             if (this.isBuffed()) {
-                int soinBuffed = getBuffedStat(quantiteSoin);
-                int soinFinal = Math.min(soinBuffed, differencePvMaxPv);
-
-                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + quantiteSoin + " ! Pour un total de : " + soinFinal, "info");
+                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + soinFinal + " ! Pour un total de : " + getBuffedStat(soinFinal), "info");
                 cible.prendreDegats(-soinFinal);
             } else {
-                int soinFinal = Math.min(quantiteSoin, differencePvMaxPv);
-
                 printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + soinFinal + " PVs", "info");
                 cible.prendreDegats(-soinFinal);
             }
         } else {
-            printAndLog("Action Interdite : Impossible de soigner un compagnon mort.", "warning");
+            if (cible.getPv() < 0)
+                printAndLog("Action Interdite : Impossible de soigner un compagnon mort.", "warning");
+            if (cible.getPv() == cible.getPvMax())
+                printAndLog("Impossible de soigner un allié dont la vie est pleine ("+cible.getNom()+" a "+cible.getPv()+"/"+cible.getPvMax()+")", "info");
         }
     }
 
     public void soigner(Champion cible) {
         if (cible.getPv() > 0 && cible.getPvMax() > cible.getPv()) {
-            int differencePvMaxPv = cible.getPvMax() - cible.getPv();
+            int soinFinal;
+            // On vérifie qu'on ne rend pas à la cible plus de ses PVs
+            if (!this.isBuffed())
+                soinFinal = getBuffedStat(quantiteSoin) + cible.getPv();
+            else
+                soinFinal = quantiteSoin+cible.getPv();
+
+            if (soinFinal > cible.getPvMax())
+                soinFinal = cible.getPvMax()-soinFinal;
+            else soinFinal = quantiteSoin;
 
             if (this.isBuffed()) {
-                int soinBuffed = getBuffedStat(quantiteSoin);
-                int soinFinal = Math.min(soinBuffed, differencePvMaxPv);
-
-                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + quantiteSoin + " ! Pour un total de : " + soinFinal, "info");
+                printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + (100 + getQuantiteBuff()) + "% de " + soinFinal + " ! Pour un total de : " + getBuffedStat(soinFinal), "info");
                 cible.prendreDegats(-soinFinal);
             } else {
-                int soinFinal = Math.min(quantiteSoin, differencePvMaxPv);
-
                 printAndLog(getNom() + " soigne " + cible.getNom() + " et lui rend " + soinFinal + " PVs", "info");
                 cible.prendreDegats(-soinFinal);
             }
         } else {
-            printAndLog("Action Interdite : Impossible de soigner un compagnon mort.", "warning");
+            if (cible.getPv() < 0)
+                printAndLog("Action Interdite : Impossible de soigner un compagnon mort.", "warning");
+            if (cible.getPv() == cible.getPvMax())
+                printAndLog("Impossible de soigner un allié dont la vie est pleine ("+cible.getNom()+" a "+cible.getPv()+"/"+cible.getPvMax()+")", "info");
         }
     }
-
 
     public int getQuantiteSoin(){
         return quantiteSoin;

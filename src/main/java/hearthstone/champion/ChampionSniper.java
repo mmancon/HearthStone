@@ -12,11 +12,6 @@ public class ChampionSniper extends Champion {
     }
 
     @Override
-    public void mourir() {
-
-    }
-
-    @Override
     public void utiliserCapacite(Champion cible) {
         printAndLog(this.getNom() + " attaque "+cible.getNom()+" et lui inflige " + this.degats + " de dégâts.","info");
         cible.attaquetEtIgnorerProtecteur(this, cible);

@@ -1,8 +1,5 @@
 package hearthstone.main;
-import hearthstone.champion.Champion;
-import hearthstone.champion.ChampionInvocateur;
-import hearthstone.champion.ChampionSniper;
-import hearthstone.champion.ChampionSoigneur;
+import hearthstone.champion.*;
 import hearthstone.monstre.*;
 
 import java.io.IOException;
@@ -20,9 +17,7 @@ public class Main {
         FileHandler fh = null;
         try {
             fh = new FileHandler("./HearthStone_Partie.log");
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SecurityException | IOException e) {
             e.printStackTrace();
         }
         logger.addHandler(fh);
@@ -37,7 +32,7 @@ public class Main {
         ChampionSoigneur champ1 = new ChampionSoigneur(0, "Michel", pathToDeck1, 10);
         ChampionSniper champ2 = new ChampionSniper(1, "Léon", 3, pathToDeck2);
 
-        ArrayList<Champion> listeJoueurs = new ArrayList<Champion>();
+        ArrayList<Champion> listeJoueurs = new ArrayList<>();
         listeJoueurs.add(champ1);
         listeJoueurs.add(champ2);
 
@@ -92,7 +87,7 @@ public class Main {
                 for (Monstre monstre : currentPlayer.getEquipe()) {
                     logger.info("Au tour de " + monstre.getNom() + " :");
                     if (monstre.getClass().equals(MonstreMascotte.class)) {
-                        if (((MonstreMascotte) monstre).getMonstreBuffed() == null && !verifierClasse(currentPlayer.getEquipe(), MonstreMascotte.class) && random.nextInt(2) == 1) {
+                        if (((MonstreMascotte) monstre).getMonstreBuffed() == null && !verifierClasse(currentPlayer.getEquipe(), MonstreMascotte.class)) {
                             // On choisit un monstre qui n'est pas une Mascotte au hasard (dans notre équipe) à buffer
                             ((MonstreMascotte) monstre).buffer(choisirAleatoireAvecExclusionDeClasse(currentPlayer.getEquipe(), MonstreMascotte.class));
                         }
@@ -107,7 +102,7 @@ public class Main {
                             }
                         }
                     } else if (monstre.getClass().equals(MonstreSoigneur.class)) {
-                        if (currentPlayer.getEquipe().size() == 1) { // Si l'équipe du n'est composée que du Healer
+                        if (currentPlayer.getEquipe().size() == 1) { // Si l'équipe du n'est composée que du Healer -> Ce choix a été fait car sinon la partie dure trop longtemps
                             ((MonstreSoigneur) monstre).soigner(currentPlayer); // On soigne le joueur
                         } else { // Sinon on heal un allié
                             ((MonstreSoigneur) monstre).soigner(choisirAleatoireAvecExclusion(currentPlayer.getEquipe(), monstre));
@@ -115,8 +110,14 @@ public class Main {
                     } else if (monstre.getClass().equals(MonstreProtecteur.class)) {
                         if (!currentPlayer.isProtected() && !((MonstreProtecteur) monstre).isProtecting()) { // Si le champion n'est pas protégé on le protège en priorité
                             ((MonstreProtecteur) monstre).proteger(currentPlayer);
-                        } else if (!((MonstreProtecteur) monstre).isProtecting() && verifierClasse(currentPlayer.getEquipe(), MonstreProtecteur.class)) { // Sinon on protège un Monstre allié
-                            ((MonstreProtecteur) monstre).proteger(choisirAleatoireAvecExclusionDeClasse(currentPlayer.getEquipe(), Monstre.class));
+                        } else if (!((MonstreProtecteur) monstre).isProtecting() && !verifierClasse(currentPlayer.getEquipe(), MonstreProtecteur.class)) { // Sinon on protège un Monstre allié
+                            ArrayList<Monstre> MonstreProteable = new ArrayList<>();
+                            for (Monstre monstreACheck : currentPlayer.getEquipe()) {
+                                if (!monstreACheck.isBuffed() && !monstreACheck.getClass().equals(MonstreProtecteur.class))
+                                    MonstreProteable.add(monstreACheck);
+                            }
+                            if(!MonstreProteable.isEmpty())
+                                ((MonstreProtecteur) monstre).proteger(choisirAleatoire(MonstreProteable));
                         } else logger.info(monstre.getNom()+" protège déjà une entité.");
                     }
                     if (enemyChamp.getPv() < 0) // Si l'ennemi est mort, on arrête le jeu

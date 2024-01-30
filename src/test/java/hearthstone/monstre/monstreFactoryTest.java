@@ -29,7 +29,7 @@ public class monstreFactoryTest extends TestCase {
         assertEquals(25, m2.getDegats());
         mMascotte.buffer(m2);
         assertEquals(100, mMascotte.getPourcentageBuff());
-        assertEquals(50, m2.getDegats());
+        assertEquals(25, m2.getDegats());
 
         // Vérifiez l'attaque et les dégâts subis
         assertEquals(35, m1.getPv());
@@ -40,6 +40,6 @@ public class monstreFactoryTest extends TestCase {
         // Vérifiez le soin
         assertEquals(12, mSoin.getQuantiteSoin());
         mSoin.soigner(m1);
-        assertEquals(47, m1.getPv());
+        assertEquals(35, m1.getPv());
     }
 }

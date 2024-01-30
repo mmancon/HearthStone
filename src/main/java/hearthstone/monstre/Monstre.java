@@ -17,14 +17,14 @@ public abstract class Monstre {
     public Monstre(int id, int pv, String nom) {
         this.id = id;
         this.pv = pv;
-        pvMax = pv;
+        this.pvMax = pv;
         this.nom = nom;
     }
 
     public void prendreDegats(int degats) {
         if (!this.isProtected || degats < 0) { // Si ce monstre n'est pas protégé OU s'il se fait soigner
             this.pv -= degats;
-            printAndLog(getNom()+" a désormais "+getPv()+" PVs.", "info");
+            printAndLog(getNom()+" a désormais "+this.getPv()+"/"+this.getPvMax()+" PVs.", "info");
             if (this.pv <= 0) {
                 printAndLog(getNom()+" est mort !", "info");
                 this.mourir();
