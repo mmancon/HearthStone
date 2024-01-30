@@ -2,6 +2,10 @@ package hearthstone.monstre;
 import hearthstone.champion.ChampionAttaquant;
 import hearthstone.champion.ChampionSniper;
 
+    /**
+     * TU Perso : Vérifie qu'un champion ne puisse pas utiliser 2 fois sa capacité
+     * &#064;Test
+     */
 public class TestCapacite2fois {
     public static void main(String[] args) {
 
@@ -34,6 +38,5 @@ public class TestCapacite2fois {
     }
 
     private static void poserMonstre(Monstre monstre) {
-        // Votre logique pour poser le monstre ici...
     }
 }
