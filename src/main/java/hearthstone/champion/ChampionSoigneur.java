@@ -34,8 +34,8 @@ public class ChampionSoigneur extends Champion {
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            printAndLog(getNom() + " utilise sa capacité pour soigner "+cible.getNom(),"info");
-            cible.prendreDegats(-200);
+            printAndLog(getNom() + " utilise sa capacité pour soigner "+soins+" à "+cible.getNom(),"info");
+            cible.prendreDegats(-soins);
         } else {
             printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }

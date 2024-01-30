@@ -16,7 +16,7 @@ public class ChampionSniper extends Champion {
     }
 
     @Override
-    public void utiliserCapacite(Champion cible) {
+    public void utiliserCapacite() {
 
     }
 
@@ -26,10 +26,14 @@ public class ChampionSniper extends Champion {
     }
 
     @Override
-    public void utiliserCapacite() {
-        getListener().attaquerAdversaire(2);
-        // Logique pour attaquer un champion
+    public void utiliserCapacite(Champion cible) {
+        if (!capaciteUtilisee) {
+            capaciteUtilisee = true; // Marquer la capacité comme utilisée
+        attaquetEtIgnorerProtecteur(this,cible);
         printAndLog(this.getNom() + " attaque avec " + this.degats + " de dégâts.","info");
+        } else {
+            printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
+        }
     }
 
 

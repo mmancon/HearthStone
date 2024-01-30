@@ -20,12 +20,23 @@ public class ChampionAttaquant extends Champion {
             printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }
     }
+
+    @Override
+    public void utiliserCapacite() {
+
+    }
+
+    @Override
+    public void mourir() {
+
+    }
+
     @Override
     public void utiliserCapacite(Champion cible) {
         if (!capaciteUtilisee) {
             capaciteUtilisee = true; // Marquer la capacité comme utilisée
-            printAndLog(getNom() + " utilise sa capacité pour infliger "+degats+ " à "+cible.getNom(), "info");
             cible.prendreDegats(degats);
+            printAndLog(getNom() + " utilise sa capacité pour infliger "+degats+ " à "+cible.getNom(), "info");
         } else {
             printAndLog("Impossible, la capacité a déjà été utilisée ce tour-ci.","info");
         }

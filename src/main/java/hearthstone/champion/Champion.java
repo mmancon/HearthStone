@@ -19,7 +19,7 @@ public abstract class Champion {
     Logger logger = Logger.getLogger("hearthstone.game");
     private int pv;
     private String nom;
-    public boolean capaciteUtilisee;
+    public boolean capaciteUtilisee; // Cette variable passe à vrai lorsqu'un champion utilise sa capacité lors d'un tour, il ne peut donc l'utiliser qu'une fois par tour
     private int id;
     private String capacite;
     private ArrayList<Carte> main;
@@ -86,9 +86,11 @@ public abstract class Champion {
         return deck;
     }
 
+    //Permet à la capacité du sniper de passer outre le protecteur
     protected void attaquetEtIgnorerProtecteur(ChampionSniper sniper, Champion cible){
         cible.setPv(cible.getPv()-sniper.getDegats());
     }
+
     // Getters et Setters
     public String getNom() {
         return nom;
@@ -118,6 +120,7 @@ public abstract class Champion {
         this.capaciteUtilisee = capaciteUtilisee;
     }
     public abstract void utiliserCapacite(Champion cible);
+    // Methodes qui permettent aux champions d'utiliser leurs capacités sur un champion adverse ou un monstre
     public abstract void utiliserCapacite(Monstre cible);
 
     protected void setId(int id) {
