@@ -22,7 +22,7 @@ public abstract class Champion {
 
     public Champion(int id, int pv, String nom) {
         this.id = id;
-        pv = 30;
+        this.pv = pv;
         this.nom = nom;
         main = new ArrayList<>();
         terrain = new ArrayList<>();
@@ -77,7 +77,7 @@ public abstract class Champion {
         getTerrain().remove(m);
     }
 
-    public void playMinion(Monstre m){
+    public void jouerMonstre(Monstre m){
         main.remove(m);
         terrain.add(m);
     }

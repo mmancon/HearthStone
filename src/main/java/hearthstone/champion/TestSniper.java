@@ -1,4 +1,4 @@
-package hearthstone.main;
+package hearthstone.champion;
 
 import hearthstone.champion.Champion;
 import hearthstone.champion.ChampionAttaquant;
@@ -6,27 +6,23 @@ import hearthstone.champion.ChampionListener;
 import hearthstone.champion.ChampionSniper;
 import hearthstone.monstre.Monstre;
 
-public class Main {
+public class TestSniper {
     public static void main(String[] args) {
         // Création d'une instance de ChampionAttaquant
         ChampionAttaquant champion = new ChampionAttaquant() {
             @Override
             public void utiliserCapacite() {
-                // Ne fait rien dans ce contexte, car cette méthode ne sera pas appelée.
+                // Ne fait rien dans ce contexte, car ChampionAttaquant ne définit pas cette méthode.
             }
 
             @Override
             public void utiliserCapacite(Champion cible) {
-                // Infliger 1 point de dégât au champion adverse
-                System.out.println(getNom() + " utilise sa capacité pour infliger 1 point de dégât au champion adverse : " + cible.getNom());
-                cible.prendreDegats(1);
+                // Ne fait rien dans ce contexte, car ChampionAttaquant ne définit pas cette méthode.
             }
 
             @Override
             public void utiliserCapacite(Monstre cible) {
-                // Infliger 1 point de dégât au monstre adverse
-                System.out.println(getNom() + " utilise sa capacité pour infliger 1 point de dégât au monstre adverse.");
-                cible.prendreDegats(1);
+                // Ne fait rien dans ce contexte, car ChampionAttaquant ne définit pas cette méthode.
             }
 
             @Override
@@ -36,16 +32,18 @@ public class Main {
             }
         };
 
-        // Création d'une instance de ChampionSniper comme champion adverse
-        ChampionSniper championAdverse = new ChampionSniper() {
+        // Création d'une instance de ChampionSniper
+        ChampionSniper sniper = new ChampionSniper() {
             @Override
             public void utiliserCapacite() {
-                // Ne fait rien dans ce contexte
+                super.utiliserCapacite(); // Appel de la méthode de la classe parente
+                // Logique supplémentaire spécifique au ChampionSniper
+                System.out.println("Capacité spéciale du Sniper activée !");
             }
 
             @Override
             public void mourir() {
-                // Logique pour gérer la mort du champion adverse
+                // Logique pour gérer la mort du champion
                 System.out.println(getNom() + " est mort !");
             }
 
@@ -60,8 +58,8 @@ public class Main {
             }
         };
 
-        // Assurez-vous que le champion adverse a un écouteur pour gérer l'attaque
-        championAdverse.setListener(new ChampionListener() {
+        // Assurez-vous que le sniper a un écouteur pour gérer l'attaque
+        sniper.setListener(new ChampionListener() {
             @Override
             public void mortChampion() {
                 // Ne fait rien dans ce contexte
@@ -69,7 +67,7 @@ public class Main {
 
             @Override
             public void attaquerAdversaire(int amount) {
-                // Logique pour réduire les points de vie du champion attaquant
+                // Logique pour réduire les points de vie de l'adversaire
                 champion.prendreDegats(amount);
             }
 
@@ -79,13 +77,14 @@ public class Main {
             }
         });
 
-        // Affichage des PV du champion adverse avant l'attaque
-        System.out.println("PV du champion adverse avant l'attaque : " + championAdverse.getPv());
+        // Affichage des PV du champion avant l'attaque
+        System.out.println("PV du champion avant l'attaque : " + champion.getPv());
 
-        // Utilisation de la capacité spéciale du ChampionAttaquant contre le champion adverse
-        champion.utiliserCapacite(championAdverse);
+        // Utilisation de la capacité spéciale du ChampionSniper
+        sniper.utiliserCapacite();
 
-        // Affichage des PV du champion adverse après l'attaque
-        System.out.println("PV du champion adverse après l'attaque : " + championAdverse.getPv());
+        // Affichage des PV du champion après l'attaque
+        System.out.println("PV du champion après l'attaque : " + champion.getPv());
     }
 }
+

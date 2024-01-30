@@ -4,10 +4,10 @@ import hearthstone.monstre.Monstre;
 public abstract class ChampionAttaquant extends Champion {
     private int degats;
 
-    public ChampionAttaquant(int id, int pv, String nom, int degats) {
-        super(id, pv, nom);
-        this.degats = degats;
+    public ChampionAttaquant() {
+        super(1,30,"Mage");
     }
+
 
     @Override
     public void utiliserCapacite(Monstre cible) {
