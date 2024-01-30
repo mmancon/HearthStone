@@ -19,7 +19,7 @@ public abstract class Champion {
     private int pv = 300;
     private final int pvMax = 300;
     private String nom;
-    public boolean capaciteUtilisee;
+    public boolean capaciteUtilisee; // Cette variable passe à vrai lorsqu'un champion utilise sa capacité lors d'un tour, il ne peut donc l'utiliser qu'une fois par tour
     private int id;
     private String capacite;
     private ArrayList<Carte> main;
@@ -40,8 +40,8 @@ public abstract class Champion {
             this.pv -= degats;
             printAndLog(getNom()+" a désormais "+getPv()+"/"+getPvMax()+" PVs.", "info");
             if (this.pv <= 0) {
-                printAndLog(getNom() + " est mort !", "info");
-            }
+                this.pv = 0;
+                printAndLog(getNom() + " est mort"+" avec "+getPv()+" PV !", "info");            }
         } else {
             protecteur.prendreDegats(degats);
         }
@@ -81,6 +81,7 @@ public abstract class Champion {
         return deck;
     }
 
+    //Permet à la capacité du sniper de passer outre le protecteur
     protected void attaquetEtIgnorerProtecteur(ChampionSniper sniper, Champion cible){
         cible.setPv(cible.getPv()-sniper.getDegats());
         printAndLog(getNom()+" a désormais "+getPv()+"/"+getPvMax()+" PVs.", "info");
@@ -115,6 +116,7 @@ public abstract class Champion {
         this.capaciteUtilisee = capaciteUtilisee;
     }
     public abstract void utiliserCapacite(Champion cible);
+    // Methodes qui permettent aux champions d'utiliser leurs capacités sur un champion adverse ou un monstre
     public abstract void utiliserCapacite(Monstre cible);
 
     protected void setId(int id) {

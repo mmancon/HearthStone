@@ -26,6 +26,7 @@ public abstract class Monstre {
             this.pv -= degats;
             printAndLog(getNom()+" a désormais "+this.getPv()+"/"+this.getPvMax()+" PVs.", "info");
             if (this.pv <= 0) {
+                this.pv = 0;
                 printAndLog(getNom()+" est mort !", "info");
                 this.mourir();
             }
