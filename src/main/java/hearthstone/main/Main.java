@@ -66,7 +66,7 @@ public class Main {
                     if (!enemyChamp.getEquipe().isEmpty()) { // Si l'adversaire a des monstres dans son équipe
                         Monstre cible = choisirAleatoire(enemyChamp.getEquipe());
                         currentPlayer.utiliserCapacite(cible);
-                        if (cible.getPv() < 0){
+                        if (cible.getPv() <= 0){
                             enemyChamp.getEquipe().remove(cible);
                         }
                     }
@@ -120,7 +120,7 @@ public class Main {
                                 ((MonstreProtecteur) monstre).proteger(choisirAleatoire(MonstreProteable));
                         } else logger.info(monstre.getNom()+" protège déjà une entité.");
                     }
-                    if (enemyChamp.getPv() < 0) // Si l'ennemi est mort, on arrête le jeu
+                    if (enemyChamp.getPv() <= 0) // Si l'ennemi est mort, on arrête le jeu
                         break;
                 }
             } else
